@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
-import Homepage from "../../pages/homepage/Homepage";
+// import Homepage from "../../pages/homepage/Homepage";
 import { auth } from "../../firebase/FirebaseUtils";
 import "./header.style.scss";
 
