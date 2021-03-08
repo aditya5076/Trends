@@ -2,8 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 // import Homepage from "../../pages/homepage/Homepage";
+import { connect } from "react-redux";
 import { auth } from "../../firebase/FirebaseUtils";
 import "./header.style.scss";
+import CartIcon from "../cart-icon/CartIcon";
 
 const Header = ({ currentUser }) => {
   return (
@@ -27,9 +29,14 @@ const Header = ({ currentUser }) => {
             SIGN IN
           </Link>
         )}
+        <CartIcon />
       </div>
     </div>
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
+export default connect(mapStateToProps)(Header);
