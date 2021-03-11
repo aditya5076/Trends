@@ -7,7 +7,9 @@ import SignUpAndSignIn from "./pages/signUpandIn/SignUpAndSignIn";
 import { auth, createUserProfileDocument } from "./firebase/FirebaseUtils";
 import { connect } from "react-redux";
 import { setCurrentUser } from "./redux/user/userAction";
+import { selectCurrentUser } from "./redux/user/user.selector";
 import "./App.css";
+import CheckOut from "./pages/checkout/CheckOut";
 
 class App extends React.Component {
   // constructor() {
@@ -52,7 +54,8 @@ class App extends React.Component {
         <Header />
         <Switch>
           <Route exact path="/" component={Homepage} />
-          <Route exact path="/shop" component={Shop} />
+          <Route path="/shop" component={Shop} />
+          <Route exact path="/checkout" component={CheckOut} />
           <Route
             exact
             path="/signIn"
@@ -66,8 +69,13 @@ class App extends React.Component {
   }
 }
 
+// BAD PRACTISE MAY CAUSE PERFORMANCE ISSUE
+// const mapStateToProps = (state) => ({
+//   currentUser: state.user.currentUser,
+// });
+
 const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
+  currentUser: selectCurrentUser(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
